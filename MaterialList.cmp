@@ -1,0 +1,49 @@
+<aura:component controller="MaterialListController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    
+    <aura:attribute name="materialsList" type="Material__c[]"></aura:attribute>
+    <aura:attribute name="newMaterial" type="Material__c[]"></aura:attribute>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <div class='slds-box slds-theme_default slds-clearfix'>
+        <h1 class='slds-align_absolute-center slds-m-bottom_small' style="font-size: 18px">Lista Compras para o escritório: Aura</h1>
+        <table>
+            
+            <thead>
+                <th>Nome do Produto:</th>
+                <th>Data da Compra:</th>
+                <th>Preço Unitário:</th>
+                <th>Preço Total:</th>
+            </thead>
+            
+            <tbody>
+                
+                <aura:iteration items="{!v.materialsList}" var="material">
+                    <tr>
+                        <td>{!material.Name}</td>
+                        <td>{!material.Data_da_Compra__c}</td>
+                        <td>R${!material.Preco_Unitario__c}</td>
+                        <td>R${!material.Preco_Total__c}</td>
+                    </tr>
+                </aura:iteration>            
+            </tbody>
+        </table>
+        
+        <h1 class='slds-align_absolute-center slds-m-bottom_small slds-m-top_large' style="font-size: 18px">Adicione novos itens:</h1>
+        
+        <lightning:recordEditForm aura:id="recordEditForm"
+                                  objectApiName="Material__c"
+                                  onsuccess="{!c.handleSuccess}">
+            <lightning:messages />
+            <lightning:inputField aura:id="field" fieldName="Name" />
+            <lightning:inputField aura:id="field" fieldName="Data_da_Compra__c" />
+            <lightning:inputField aura:id="field" fieldName="Preco_Unitario__c" />
+            <lightning:inputField aura:id="field" fieldName="Preco_Total__c" />           
+            
+            <lightning:button class="slds-float_right slds-m-top_small" type="submit" label="Adicionar"/>
+            <lightning:button class="slds-float_right slds-m-top_small" variant="destructive" label="Clear" onclick="{!c.handleReset}" />
+            
+        </lightning:recordEditForm>
+        
+    </div>
+</aura:component>
