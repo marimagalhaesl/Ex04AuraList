@@ -1,0 +1,8 @@
+public class MaterialListController {
+    
+    @AuraEnabled
+    public static List<Material__c> getMaterialsList() {
+        return [SELECT Id, Name, Data_da_Compra__c, Preco_Unitario__c, Preco_Total__c  FROM Material__c ORDER BY Data_da_Compra__c];
+    }
+    
+}
