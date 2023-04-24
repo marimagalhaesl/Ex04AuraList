@@ -1,7 +1,6 @@
 <aura:component controller="MaterialListController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
     
     <aura:attribute name="materialsList" type="Material__c[]"></aura:attribute>
-    <aura:attribute name="newMaterial" type="Material__c[]"></aura:attribute>
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     
